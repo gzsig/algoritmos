@@ -1,34 +1,25 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
-        int  x, y, z, menor;
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
 
         System.out.println("first number?");
-        x = keyboard.nextInt();
+        numbers.add(keyboard.nextInt());
         System.out.println("second number?");
-        y = keyboard.nextInt();
+        numbers.add(keyboard.nextInt());
         System.out.println("third number?");
-        z = keyboard.nextInt();
+        numbers.add(keyboard.nextInt());
 
-        menor = x;
+        Collections.sort(numbers);
 
-        if (x != z && x != y && z != y){
-            if (z < menor){
-                menor = z;
-            }
-            if (y < menor){
-                menor = y;
-            }
-            System.out.println(menor);
-        }
-        else {
-            System.out.println("the there are matching numbers!");
-        }
+        System.out.println(numbers.get(0));
 
         keyboard.close();
     }
