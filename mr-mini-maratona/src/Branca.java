@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class branca {
+public class Branca {
     public static void main(String[] args) {
         int numOfTriangles;
         Scanner keyboard = new Scanner(System.in);
