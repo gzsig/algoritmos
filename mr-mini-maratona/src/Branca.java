@@ -23,7 +23,7 @@ public class Branca {
         b = keyboard.nextInt();
         System.out.println("Informe o terceiro lado");
         c = keyboard.nextInt();
-        if(validate(a, b, c)) {
+        if (validate(a, b, c)) {
             System.out.println(getType(a, b, c));
         }
     }

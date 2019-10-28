@@ -10,21 +10,20 @@ public class Azul {
         System.out.println("Informe o valor de y");
         y = keyboard.nextDouble();
 
-        if(y == 0 && x==0){
+        if (y == 0 && x == 0) {
             System.out.println("origem");
-        } else if (y == 0){
+        } else if (y == 0) {
             System.out.println("Eixo X");
-        } else if (x == 0 ){
+        } else if (x == 0) {
             System.out.println("Eixo Y");
-        } else if(y > 0 && x > 0){
+        } else if (y > 0 && x > 0) {
             System.out.println("Quadante 1");
-        } else if(x > 0 && y < 0){
+        } else if (x > 0 && y < 0) {
             System.out.println("Quadante 2");
-        } else if(y < 0 && x < 0){
+        } else if (y < 0 && x < 0) {
             System.out.println("Quadante 3");
-        } else if (y < 0 && x > 0){
+        } else if (y < 0 && x > 0) {
             System.out.println("Quadante 4");
         }
     }
 }
-
