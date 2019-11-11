@@ -20,10 +20,11 @@ public class Tres {
         int tempI, tempF;
         System.out.println("informe a temperatura inicial em Celsius");
         tempI = keyboard.nextInt();
+        System.out.println("informe a temperatura final em Réaumur");
         tempF = keyboard.nextInt();
 
         for (int i = tempI; i <= tempF; i ++){
-            System.out.println("Celsius: " + i + " Réaumur: " + i * 0.8);
+            System.out.println("Celsius: " + i + " Réaumur: " + (Math.round(i * 0.8*100.0)/100.0));
         }
 
     }
@@ -32,10 +33,11 @@ public class Tres {
         int tempI, tempF;
         System.out.println("informe a temperatura inicial em Réaumur");
         tempI = keyboard.nextInt();
+        System.out.println("informe a temperatura final em Réaumur");
         tempF = keyboard.nextInt();
 
         for (int i = tempI; i <= tempF; i ++){
-            System.out.println("Réaumur: " + i + " Celsius: " + i * 1.25);
+            System.out.println("Réaumur: " + i + " Celsius: " + (Math.round(i * 1.25*100.0)/100.0));
         }
     }
 }
