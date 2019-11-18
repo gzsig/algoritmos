@@ -1,7 +1,9 @@
 public class Sete {
     public static void main(String[] args) {
-        for(int j = 44; j >= 0; j -= 11){
-            System.out.println(j);
+        int j;
+        for( j = 44; j >= 0; j -= 11){
+//            System.out.println(j);
         }
+        System.out.println(j);
     }
 }
