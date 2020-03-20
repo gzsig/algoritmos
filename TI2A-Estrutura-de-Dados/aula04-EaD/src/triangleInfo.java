@@ -14,19 +14,30 @@ public class triangleInfo {
     b = keyboard.nextDouble();
     System.out.println("Size of side C?");
     c = keyboard.nextDouble();
-    P = perimeter(a, b, c);
-    p = semiPerimeter(P);
-    S = area(a, b, c, p);
-    l = lambda(a, b, c);
-    x = centroidex(a, b, l);
-    y = centroidey(a, l);
-    System.out.println("perimeter:" + P);
-    System.out.println("semiPerimeter: " + p);
-    System.out.println("area: " + S);
-    System.out.println("lambda: " + l);
-    System.out.println("centroidex: " + x);
-    System.out.println("centroidey: " + y);
+    if (isValid(a, b, c)) {
+      P = perimeter(a, b, c);
+      p = semiPerimeter(P);
+      S = area(a, b, c, p);
+      l = lambda(a, b, c);
+      x = centroidex(a, b, l);
+      y = centroidey(a, l);
+      System.out.println("perimeter:" + P);
+      System.out.println("semiPerimeter: " + p);
+      System.out.println("area: " + S);
+      System.out.println("lambda: " + l);
+      System.out.println("centroidex: " + x);
+      System.out.println("centroidey: " + y);
+    }
     keyboard.close();
+  }
+
+  private static boolean isValid(double a, double b, double c) {
+    if (a + b > c && b + c > a && c + a > b) {
+      return true;
+    } else {
+      System.out.println("Not a valid triangle");
+      return false;
+    }
   }
 
   private static double perimeter(double a, double b, double c) {
