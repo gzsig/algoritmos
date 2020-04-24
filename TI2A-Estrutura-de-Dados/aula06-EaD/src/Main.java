@@ -7,20 +7,13 @@ public class Main {
 
     DoublyLinkedList lista = new DoublyLinkedList();
 
-    Student gabe = new Student();
-    Student du = new Student();
-    Student tais = new Student();
+    Student Std1 = new Student(123, "Std1", 5, 5);
+    Student Std2 = new Student(456, "Std2", 5, 5);
+    Student Std3 = new Student(789, "Std3", 5, 5);
 
-    gabe.name = "Gabe";
-    gabe.id = 123;
-    du.name = "Du";
-    du.id = 456;
-    tais.name = "Tais";
-    tais.id = 789;
-
-    lista.unshift(gabe);
-    lista.unshift(du);
-    lista.push(tais);
+    lista.unshift(Std1);
+    lista.unshift(Std2);
+    lista.push(Std3);
 
     lista.print();
     lista.findAndRemove(123);
