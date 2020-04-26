@@ -18,21 +18,28 @@ public class Playlist {
     }
   }
 
-  public void search(String title) {
+  public Node search(String title) {
     Node searching = first;
     System.out.println("entrei");
     while (searching != null) {
       System.out.println(searching.data.title);
-      if(searching.data.title.equals(title)){
+      if (searching.data.title.equals(title)) {
         System.out.println("ACHEI");
-        System.out.println(searching.data.title);
-        System.out.println(searching.data.artist);
-        System.out.println(searching.data.genre);
-        break;
+        return searching;
       }
       searching = searching.right;
     }
     System.out.println("sai");
+    return searching;
+  }
+
+  public void play(String title) {
+    Node song = search(title);
+    if (song != null){
+      song.data.playTimes ++;
+    } else {
+      System.out.println("Xii, não encontrei essa ai");
+    }
   }
 
   public void print() {

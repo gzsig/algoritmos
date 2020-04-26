@@ -34,7 +34,7 @@ public class Main {
         break;
       case 2:
         System.out.println("Bora escutar um som?");
-        playlist.search("musica1");
+        playlist.play("mus");
         break;
       case 3:
         System.out.println("Cansou? Então bora excluir!");
