@@ -34,6 +34,7 @@ public class Main {
         break;
       case 2:
         System.out.println("Bora escutar um som?");
+        playlist.search("musica1");
         break;
       case 3:
         System.out.println("Cansou? Então bora excluir!");
@@ -47,6 +48,7 @@ public class Main {
 
       default:
         System.out.println("Comando não encontrado.");
+        playlist.print();
         break;
     }
     return true;

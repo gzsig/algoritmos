@@ -18,6 +18,23 @@ public class Playlist {
     }
   }
 
+  public void search(String title) {
+    Node searching = first;
+    System.out.println("entrei");
+    while (searching != null) {
+      System.out.println(searching.data.title);
+      if(searching.data.title.equals(title)){
+        System.out.println("ACHEI");
+        System.out.println(searching.data.title);
+        System.out.println(searching.data.artist);
+        System.out.println(searching.data.genre);
+        break;
+      }
+      searching = searching.right;
+    }
+    System.out.println("sai");
+  }
+
   public void print() {
     Node toPrint = first;
     while (toPrint != null) {
