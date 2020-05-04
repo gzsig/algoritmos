@@ -5,6 +5,7 @@ public class Playlist {
 
   Node first;
   Node last;
+  Song[] top5 = new Song[6];
 
   public void push(Song instance) {
     Node tmp = new Node();
@@ -69,69 +70,42 @@ public class Playlist {
 
   public void topSongs() {
     Node iterate = first;
-    Song top1 = null, top2 = null, top3 = null, top4 = null, top5 = null;
-    int play1 = 0, play2 = 0, play3 = 0, play4 = 0, play5 = 0;
     while (iterate != null) {
-      if (iterate.data.playTimes > play1) {
-        play1 = iterate.data.playTimes;
-        top1 = iterate.data;
-        iterate = iterate.right;
-        continue;
-      } else if (iterate.data.playTimes > play2) {
-        play2 = iterate.data.playTimes;
-        top2 = iterate.data;
-        iterate = iterate.right;
-        continue;
-      } else if (iterate.data.playTimes > play3) {
-        play3 = iterate.data.playTimes;
-        top3 = iterate.data;
-        iterate = iterate.right;
-        continue;
-      } else if (iterate.data.playTimes > play4) {
-        play4 = iterate.data.playTimes;
-        top4 = iterate.data;
-        iterate = iterate.right;
-        continue;
-      } else if (iterate.data.playTimes > play5) {
-        play5 = iterate.data.playTimes;
-        top5 = iterate.data;
-        iterate = iterate.right;
-        continue;
+
+      int i;
+      for (i = 0; i < top5.length - 1; i++) {
+        if (top5[i] == null || top5[i].playTimes > iterate.data.playTimes)
+          break;
       }
+      for (int k = top5.length - 2; k >= i; k--) {
+        top5[k + 1] = top5[k];
+      }
+      top5[i] = iterate.data;
+      top5[5] = null;
+
       iterate = iterate.right;
     }
-    if (top1 == null && top2 == null && top3 == null && top4 == null && top5 == null){
-      System.out.println("Nenhuma musica foi tocada :/");
+    printTopSongs(top5);
+  }
+
+  void printTopSongs(Song arr[]) {
+    int n = arr.length;
+    for (int i = 0; i < n; ++i) {
+      if (arr[i] != null) {
+        System.out.print("Titulo: " + arr[i].title + " – ");
+        System.out.print("Artista: " + arr[i].artist + " – ");
+        System.out.print("Genero: " + arr[i].genre + " – ");
+        System.out.println("Vezes tocada: " + arr[i].playTimes + "\n");
+        System.out.println();
+      }
     }
-    if (top1 != null) {
-      System.out.print("TOP 1 – Titulo: " + top1.title + " – ");
-      System.out.print("Artista: " + top1.artist + " – ");
-      System.out.print("Genero: " + top1.genre + " – ");
-      System.out.println("Vezes tocada: " + top1.playTimes + "\n");
-    }
-    if (top2 != null) {
-      System.out.print("TOP 2 – Titulo: " + top2.title + " – ");
-      System.out.print("Artista: " + top2.artist + " – ");
-      System.out.print("Genero: " + top2.genre + " – ");
-      System.out.println("Vezes tocada: " + top2.playTimes + "\n");
-    }
-    if (top3 != null) {
-      System.out.print("TOP 3 – Titulo: " + top3.title + " – ");
-      System.out.print("Artista: " + top3.artist + " – ");
-      System.out.print("Genero: " + top3.genre + " – ");
-      System.out.println("Vezes tocada: " + top3.playTimes + "\n");
-    }
-    if (top4 != null) {
-      System.out.print("TOP 4 – Titulo: " + top4.title + " – ");
-      System.out.print("Artista: " + top4.artist + " – ");
-      System.out.print("Genero: " + top4.genre + " – ");
-      System.out.println("Vezes tocada: " + top4.playTimes + "\n");
-    }
-    if (top5 != null) {
-      System.out.print("TOP 5 – Titulo: " + top5.title + " – ");
-      System.out.print("Artista: " + top5.artist + " – ");
-      System.out.print("Genero: " + top5.genre + " – ");
-      System.out.println("Vezes tocada: " + top5.playTimes + "\n");
+    cleanArray(arr);
+  }
+
+  public void cleanArray(Song[] arr) {
+    int n = arr.length;
+    for (int i = 0; i < n; ++i) {
+      arr[i] = null;
     }
   }
 
