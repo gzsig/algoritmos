@@ -34,6 +34,11 @@ public class Playlist {
   public void play(String title) {
     Node song = search(title);
     if (song != null) {
+      System.out.println("Escutando: ");
+      System.out.print("Titulo: " + song.data.title + " – ");
+      System.out.print("Artista: " + song.data.artist + " – ");
+      System.out.print("Genero: " + song.data.genre + " – ");
+      System.out.println("Vezes tocada: " + song.data.playTimes + "\n");
       song.data.playTimes++;
     } else {
       System.out.println("Xii, não encontrei essa ai");
@@ -74,7 +79,7 @@ public class Playlist {
 
       int i;
       for (i = 0; i < top5.length - 1; i++) {
-        if (top5[i] == null || top5[i].playTimes > iterate.data.playTimes)
+        if (top5[i] == null || top5[i].playTimes < iterate.data.playTimes)
           break;
       }
       for (int k = top5.length - 2; k >= i; k--) {
@@ -92,6 +97,7 @@ public class Playlist {
     int n = arr.length;
     for (int i = 0; i < n; ++i) {
       if (arr[i] != null) {
+        System.out.print("Top " + (i + 1) + " -> ");
         System.out.print("Titulo: " + arr[i].title + " – ");
         System.out.print("Artista: " + arr[i].artist + " – ");
         System.out.print("Genero: " + arr[i].genre + " – ");
