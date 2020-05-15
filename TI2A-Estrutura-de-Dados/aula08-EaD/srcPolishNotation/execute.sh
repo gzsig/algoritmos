@@ -1,0 +1,1 @@
+java -cp Pilha.jar Main.java Main.class
