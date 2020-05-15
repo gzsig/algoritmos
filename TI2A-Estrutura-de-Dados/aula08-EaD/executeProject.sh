@@ -1,0 +1,2 @@
+pushd ./srcPolishNotation
+./execute.sh
