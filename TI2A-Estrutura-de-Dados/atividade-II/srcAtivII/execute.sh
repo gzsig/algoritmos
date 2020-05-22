@@ -1,0 +1,1 @@
+ java -cp Fifo.jar Main.java Main.class

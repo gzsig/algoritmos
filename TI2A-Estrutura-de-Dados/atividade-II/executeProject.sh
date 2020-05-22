@@ -1,0 +1,2 @@
+pushd ./srcAtivII
+./execute.sh
