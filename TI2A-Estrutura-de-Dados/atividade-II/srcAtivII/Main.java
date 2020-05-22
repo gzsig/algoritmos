@@ -29,7 +29,8 @@ public class Main {
       if (pickedStudent > circle.size()) {
         pickedStudent = 0;
       }
-      System.out.println("Aluno com a batata na mão: " + pickedStudent);
+      System.out.print("Aluno com a batata na mão: ");
+      circle.find(pickedStudent, true);
       System.out.println("Número aleatorio: " + randomNumber);
 
       for (int i = randomNumber; i > 0; i--) {
@@ -38,7 +39,8 @@ public class Main {
           pickedStudent = 0;
         }
       }
-
+      System.out.print("Aluno removido: ");
+      circle.find(pickedStudent, true);
       circle.findAndRemove(pickedStudent);
       circle.print();
       System.out.println("\n\n");

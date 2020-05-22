@@ -37,7 +37,7 @@ public class Fifo<T> {
 		return cont - 1;
 	}
 
-	public Node find(int index) {
+	public Node find(int index, Boolean shouldPrint) {
 		Node<T> tmp = first;
 		if (first == null) {
 			System.out.println("List is empty");
@@ -46,6 +46,9 @@ public class Fifo<T> {
 			int cont = 0;
 			while (tmp != null) {
 				if (cont == index) {
+					if (shouldPrint) {
+						System.out.print(tmp.data + "\n");
+					}
 					return tmp;
 				}
 				cont++;
@@ -57,7 +60,7 @@ public class Fifo<T> {
 	}
 
 	public boolean findAndRemove(int index) {
-		Node<T> tmp = find(index);
+		Node<T> tmp = find(index, false);
 		if (tmp == null) {
 			System.out.println("index: " + index + " not found");
 			return false;
