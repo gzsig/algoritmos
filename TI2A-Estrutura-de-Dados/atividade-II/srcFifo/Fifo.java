@@ -27,6 +27,16 @@ public class Fifo<T> {
 		}
 	}
 
+	public int size() {
+		Node<T> tmp = first;
+		int cont = 0;
+		while (tmp != null) {
+			cont++;
+			tmp = tmp.right;
+		}
+		return cont - 1;
+	}
+
 	public Node find(int index) {
 		Node<T> tmp = first;
 		if (first == null) {
@@ -45,20 +55,6 @@ public class Fifo<T> {
 			return null;
 		}
 	}
-
-	// public Node find(int id) {
-	// Node tmp = first;
-	// while (tmp != null && tmp.data.id != id) {
-	// tmp = tmp.right;
-	// }
-	// if (tmp == null) {
-	// System.out.println("id: " + id + " not found");
-	// return null;
-	// } else {
-	// System.out.println(tmp.data.name);
-	// return tmp;
-	// }
-	// }
 
 	public boolean findAndRemove(int index) {
 		Node<T> tmp = find(index);
@@ -95,10 +91,16 @@ public class Fifo<T> {
 		if (tmp == null) {
 			System.out.println("list is empty");
 		}
+		System.out.print("[ ");
 		while (tmp != null) {
-			System.out.print(tmp.data + " ");
+			if (tmp == last) {
+				System.out.print(tmp.data);
+			} else {
+				System.out.print(tmp.data + ", ");
+			}
 			tmp = tmp.right;
 		}
+		System.out.println(" ]");
 	}
 
 }
