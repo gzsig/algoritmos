@@ -14,6 +14,7 @@ public class Q3 {
     return n + somatoryNtoZeroRec(n - 1);
   }
 
+  // Essa função faz o somatorio de 0 até n
   public static int somatoryNtoZeroLoop(int n) {
     int sum = 0;
     for (int i = 0; i <= n; i++) {
@@ -21,5 +22,4 @@ public class Q3 {
     }
     return sum;
   }
-  // Essa função faz o somatorio de 0 até n
 }

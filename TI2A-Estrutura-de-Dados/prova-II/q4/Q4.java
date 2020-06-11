@@ -22,7 +22,6 @@ public class Q4 {
       decimal /= 2;
       cont++;
     }
-
     return res;
   }
 }
