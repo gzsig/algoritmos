@@ -1,10 +1,14 @@
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 int main()
 {
-  int aBinary[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-  int bBinary[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-  int rBinary[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  int aBinary[32]; // = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  int bBinary[32]; //= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  int rBinary[32]; //= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  memset(aBinary, 0, sizeof(aBinary));
+  memset(bBinary, 0, sizeof(bBinary));
+  memset(rBinary, 0, sizeof(rBinary));
   long long int a, b, i;
   long long int r, helper;
   // while (getchar() != EOF)
@@ -37,11 +41,13 @@ int main()
     {
       rBinary[i] = 0;
     }
-    else if (aBinary[i] == 1 || bBinary[i] == 1)
+  for (i = 31; i >= 0; i--)
+  {
+    if (aBinary[i] != bBinary[i])
     {
       rBinary[i] = 1;
     }
-    else
+  }
     {
       rBinary[i] = 0;
     }
