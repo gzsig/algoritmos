@@ -3,9 +3,9 @@
 #include <math.h>
 int main()
 {
-  int aBinary[32]; // = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-  int bBinary[32]; //= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-  int rBinary[32]; //= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  int aBinary[32];
+  int bBinary[32];
+  int rBinary[32];
   memset(aBinary, 0, sizeof(aBinary));
   memset(bBinary, 0, sizeof(bBinary));
   memset(rBinary, 0, sizeof(rBinary));
@@ -24,23 +24,17 @@ int main()
     bBinary[i] = b % 2;
     b = b / 2;
   }
-  // for (i = 31; i >= 0; i--)
-  // {
-  //   printf("%d", aBinary[i]);
-  // }
-  // printf("\n");
-  // for (i = 31; i >= 0; i--)
-  // {
-  //   printf("%d", bBinary[i]);
-  // }
-  // printf("\n");
-
   for (i = 31; i >= 0; i--)
   {
-    if (aBinary[i] == 1 && bBinary[i] == 1)
-    {
-      rBinary[i] = 0;
-    }
+    printf("%d", aBinary[i]);
+  }
+  printf("\n");
+  for (i = 31; i >= 0; i--)
+  {
+    printf("%d", bBinary[i]);
+  }
+  printf("\n");
+
   for (i = 31; i >= 0; i--)
   {
     if (aBinary[i] != bBinary[i])
@@ -48,16 +42,12 @@ int main()
       rBinary[i] = 1;
     }
   }
-    {
-      rBinary[i] = 0;
-    }
-  }
 
-  // for (i = 31; i >= 0; i--)
-  // {
-  //   printf("%d", rBinary[i]);
-  // }
-  // printf("\n");
+  for (i = 31; i >= 0; i--)
+  {
+    printf("%d", rBinary[i]);
+  }
+  printf("\n");
   r = 0;
   helper = pow(2, 31);
   for (i = 31; i >= 0; i--)
