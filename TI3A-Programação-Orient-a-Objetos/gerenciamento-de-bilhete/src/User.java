@@ -3,13 +3,13 @@
  */
 public class User {
 
-  private enum userType {
+  public enum userType {
     NORMAL, ESTUDANTE, PROFESSOR
-  }
+  };
 
-  String name;
-  String id;
-  userType type;
+  private String name;
+  private String id;
+  private userType type;
 
   public User(String nome, String cpf, userType tipo) {
     this.name = nome;
@@ -17,9 +17,12 @@ public class User {
     this.type = tipo;
   }
 
-  public String getData() {
+  public String getId() {
+    return this.id;
+  }
 
-    return this.name + this.id + this.type;
+  public String getData() {
+    return this.name + " " + this.id + " " + this.type;
   }
 
 }

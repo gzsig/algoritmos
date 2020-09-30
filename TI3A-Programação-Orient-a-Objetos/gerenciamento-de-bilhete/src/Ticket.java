@@ -1,8 +1,8 @@
 public class Ticket {
-  int code;
-  User user;
-  double balance;
-  double ticketPrice = 4.4;
+  private int code;
+  private User user;
+  private double balance;
+  private double ticketPrice = 4.4;
 
   public Ticket(int numero, User usuario, double saldo) {
     this.code = numero;
@@ -10,8 +10,16 @@ public class Ticket {
     this.balance = saldo;
   }
 
+  public User getUser() {
+    return this.user;
+  }
+
+  public double getBalance() {
+    return this.balance;
+  }
+
   public String getData() {
-    return this.code + this.user.getData() + this.balance;
+    return this.code + " " + this.user.getData() + " " + this.balance;
   }
 
   public void chargeTrip() {
