@@ -16,7 +16,7 @@ public class Main {
     system(credentials, generator);
   }
 
-  public static void system(String credentials, Random generator) {
+  private static void system(String credentials, Random generator) {
     switch (credentials) {
       case "sair":
         JOptionPane.showMessageDialog(null, "Shut down");
@@ -32,7 +32,7 @@ public class Main {
     }
   }
 
-  public static void admPanel(Random generator) {
+  private static void admPanel(Random generator) {
     String option;
     option = JOptionPane.showInputDialog(null,
         "Escolha uma operação \n1. Emitir bilhete \n2. Imprimir bilhete \n3. Consultar bilhete \n4. Sair");
@@ -129,7 +129,7 @@ public class Main {
     }
   }
 
-  public static void userPanel(String id) {
+  private static void userPanel(String id) {
     String option;
 
     Ticket currentTicket = findTicket(id);
