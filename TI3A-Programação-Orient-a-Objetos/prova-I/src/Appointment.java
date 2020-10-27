@@ -15,6 +15,19 @@ public class Appointment implements Payment {
     }
   }
 
+  public Client getClient() {
+    return this.client;
+  }
+
+  public String getClientId() {
+    if (this.client instanceof Pj) {
+      return ((Pj) this.client).getCnpj();
+    } else if (this.client instanceof Pf) {
+      return ((Pf) this.client).getCpf();
+    }
+    return null;
+  }
+
   @Override
   public String toString() {
     return "Appointment – " + this.client + ", downPayment: " + this.downPayment;

@@ -6,6 +6,10 @@ public class Pj extends Client {
     this.cnpj = cnpj;
   }
 
+  public String getCnpj() {
+    return this.cnpj;
+  }
+
   @Override
   public String toString() {
     return "type: pj, name: " + this.getName() + ", cnpj: " + this.cnpj;
