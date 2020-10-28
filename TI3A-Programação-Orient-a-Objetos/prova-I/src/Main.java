@@ -3,16 +3,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-  static List<Appointment> appointments = new ArrayList<Appointment>();
-  static int MAX_TABLES = 2;
+  static List<Reservation> reservations = new ArrayList<Reservation>();
+  static int MAX_TABLES = 6;
 
   public static void main(String[] args) {
-    int op = 0;
 
+    String rawOp = "";
+    int op = 0;
     while (op != 6) {
       try {
-        op = Integer.parseInt(JOptionPane.showInputDialog(null,
-            "Restaurante SABOR SOFISTICADO \n1: Reservar mesa.\n2: Pesquisar reserva. \n3: Imprimir reservas. \n4: Imprimir lista de espera. \n5: Cancelar reserva. \n6: Finalizar."));
+        rawOp = JOptionPane.showInputDialog(null,
+            "Restaurante SABOR SOFISTICADO \n1: Reservar mesa.\n2: Pesquisar reserva. \n3: Imprimir reservas. \n4: Imprimir lista de espera. \n5: Cancelar reserva. \n6: Finalizar.");
+        if (rawOp == null) {
+          op = 6;
+        } else {
+          op = Integer.parseInt(rawOp);
+        }
         if (op > 6) {
           JOptionPane.showMessageDialog(null, "Opção invalida");
         }
@@ -28,9 +34,6 @@ public class Main {
       }
 
       program(op);
-      System.out.println(appointments);
-      System.out.println(appointments.size());
-      System.out.println("\n\n");
 
     }
   }
@@ -41,7 +44,16 @@ public class Main {
         bookTable();
         break;
       case 2:
-        LookForReservation();
+        lookForReservation();
+        break;
+      case 3:
+        showReservations();
+        break;
+      case 4:
+        showWaitingList();
+        break;
+      case 5:
+        cancelReservation();
         break;
 
       default:
@@ -54,29 +66,90 @@ public class Main {
     String[] options = { "A vista", "Parcelado" };
 
     Client newCliente = createClient();
+    if (newCliente == null) {
+      return;
+    }
     type = optionDialog(options, "Forma de pagamento");
 
-    Appointment ap = new Appointment(newCliente, type == 0 ? (true) : (false));
-    if (appointments.size() >= MAX_TABLES) {
-      dialog("O restaurante esta lotado, você é o numero " + (appointments.size() - MAX_TABLES + 1)
+    if (type == -1) {
+      return;
+    }
+
+    Reservation ap = new Reservation(newCliente, type == 0 ? (true) : (false));
+    if (reservations.size() >= MAX_TABLES) {
+      dialog("O restaurante esta lotado, você é o numero " + (reservations.size() - MAX_TABLES + 1)
           + " na lista de espera");
     }
-    appointments.add(ap);
+    reservations.add(ap);
   }
 
-  public static void LookForReservation() {
+  public static void lookForReservation() {
     String id = inputDialog("Digito o CPF ou CNPJ do cliente");
 
-    for (int i = 0; i < appointments.size(); i++) {
-      if (appointments.get(i).getClientId().equals(id)) {
-        if (i < MAX_TABLES) {
-          dialog(appointments.get(i).getClient().getName() + " tem mesa reservada.");
-        } else {
-          dialog(appointments.get(i).getClient().getName() + " é " + (i - MAX_TABLES + 1) + " na lista de espera.");
-        }
+    if (id == null) {
+      return;
+    }
+    try {
+      Reservation currentReservation = findReservationByClientId(id);
+      int i = reservations.indexOf(currentReservation);
+
+      if (i < MAX_TABLES) {
+        dialog(reservations.get(i).getClient().getName() + " tem mesa reservada.");
+        return;
+      } else {
+        dialog(reservations.get(i).getClient().getName() + " é " + (i - MAX_TABLES + 1) + " na lista de espera.");
+        return;
       }
+    } catch (Exception e) {
+      dialog("Esse CPF ou CNPJ não possui reserva para o jantar.");
+      return;
     }
 
+  }
+
+  public static void showReservations() {
+    String formattedReservations = "";
+    Client currentClient;
+
+    for (int i = 0; i < reservations.size(); i++) {
+      if (i >= MAX_TABLES)
+        break;
+      currentClient = reservations.get(i).getClient();
+      formattedReservations += "Tipo: " + currentClient.getType() + " – Nome: " + currentClient.getName()
+          + " – Forma de pagamento: " + reservations.get(i).getPaymentType() + "\n";
+    }
+    if (formattedReservations.equals("")) {
+      dialog("A lista de reserva esta vazia.");
+    } else {
+      dialog(formattedReservations);
+    }
+  }
+
+  public static void showWaitingList() {
+    String formattedReservations = "";
+    Client currentClient;
+
+    for (int i = MAX_TABLES; i < reservations.size(); i++) {
+      currentClient = reservations.get(i).getClient();
+      formattedReservations += "Tipo: " + currentClient.getType() + " – Nome: " + currentClient.getName()
+          + " – Forma de pagamento: " + reservations.get(i).getPaymentType() + " – Posição no lista de espera: "
+          + (i - MAX_TABLES + 1) + "\n";
+    }
+    if (formattedReservations.equals("")) {
+      dialog("A lista de espera esta vazia.");
+    } else {
+      dialog(formattedReservations);
+    }
+  }
+
+  public static void cancelReservation() {
+    String id = inputDialog("Informe o CPF ou CNPJ para realizar a pesquisa da reserva.");
+    Reservation currentReservation = findReservationByClientId(id);
+    if (currentReservation != null) {
+      reservations.remove(currentReservation);
+    } else {
+      dialog("Reserva não encontrada com esse documento");
+    }
   }
 
   public static Client createClient() {
@@ -86,6 +159,9 @@ public class Main {
     int type;
 
     type = optionDialog(options, "Tipo de cliente");
+    if (type == -1) {
+      return null;
+    }
     name = inputDialog("Nome do cliente");
 
     if (type == 0) {
@@ -97,6 +173,15 @@ public class Main {
       Pf pf = new Pf(name, id);
       return pf;
     }
+  }
+
+  public static Reservation findReservationByClientId(String id) {
+    for (int i = 0; i < reservations.size(); i++) {
+      if (reservations.get(i).getClient().getId().equals(id)) {
+        return reservations.get(i);
+      }
+    }
+    return null;
   }
 
   public static void dialog(String text) {
