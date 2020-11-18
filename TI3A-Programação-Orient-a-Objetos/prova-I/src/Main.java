@@ -8,6 +8,25 @@ public class Main {
 
   public static void main(String[] args) {
 
+    // Pf a = new Pf("Gabe0", "1230");
+    // Pf b = new Pf("Gabe1", "1231");
+    // Pf c = new Pf("Gabe2", "1232");
+    // Pf d = new Pf("Gabe3", "1233");
+    // Pf ee = new Pf("Gabe4", "1234");
+    // Pf f = new Pf("Gabe5", "1235");
+    // Reservation g = new Reservation(a, true);
+    // Reservation h = new Reservation(b, true);
+    // Reservation i = new Reservation(c, true);
+    // Reservation k = new Reservation(d, true);
+    // Reservation l = new Reservation(ee, true);
+    // Reservation m = new Reservation(f, true);
+    // reservations.add(g);
+    // reservations.add(h);
+    // reservations.add(i);
+    // reservations.add(k);
+    // reservations.add(l);
+    // reservations.add(m);
+
     String rawOp = "";
     int op = 0;
     while (op != 6) {
